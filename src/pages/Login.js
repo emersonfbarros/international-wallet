@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FormTitle from '../components/FormTitle';
+import TrybeWalletTitle from '../components/TrybeWalletTitle';
 import styles from './Login.module.css';
 import { getEmailOnLogin } from '../redux/actions';
 
@@ -39,7 +39,7 @@ class Login extends React.Component {
     return (
       <main>
         <form onSubmit={ this.customSubmit }>
-          <FormTitle />
+          <TrybeWalletTitle />
           <input
             className={ styles.email }
             type="text"
@@ -50,7 +50,7 @@ class Login extends React.Component {
           />
           <input
             className={ styles.passwd }
-            type="text"
+            type="password"
             name="password"
             onChange={ this.onInputChange }
             onSubmit={ this.customSubmit }

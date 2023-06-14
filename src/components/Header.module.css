@@ -1,0 +1,35 @@
+:root {
+
+  --green: #2fc18c;
+
+  --blue: #003be5;
+}
+
+header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  padding-block: 3rem 2.5rem;
+}
+
+.expanse , .email {
+  align-items: center;
+  color: var(--blue);
+  display: flex;
+  font-weight: 700;
+}
+
+.email {
+  color: var(--green);
+  font-weight: 600;
+}
+
+p img {
+  padding-right: 0.5rem;
+}
+
+.total , .currency {
+  font-weight: 400;
+  padding-left: 0.3rem;
+}

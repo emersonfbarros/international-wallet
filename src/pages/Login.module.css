@@ -26,6 +26,10 @@ main form {
   width: 42%;
 }
 
+form h1 {
+  padding: 3rem;
+}
+
 .email , .passwd , .btn {
   border: 1px solid var(--blue);
   border-radius: 5px;

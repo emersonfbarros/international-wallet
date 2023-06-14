@@ -2,8 +2,12 @@ h1 {
   color: #003be5;
   font-size: 2.6rem;
   font-weight: 300;
-  padding: 3rem;
   text-align: center;
+}
+
+h1 img {
+  vertical-align: bottom;
+  width: 3.5rem;
 }
 
 h1 span {
