@@ -1,0 +1,64 @@
+:root {
+
+  --blue: #003be5;
+}
+
+html {
+  background-attachment: fixed;
+  background-color: black;
+  background-image: url('../../public/login-bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+main form {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
+  width: 42%;
+}
+
+.email , .passwd , .btn {
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  color: var(--blue);
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 auto 0.6rem;
+  padding: 0.8rem;
+  width: 70%;
+}
+
+.btn {
+  background-color: var(--blue);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.btn:active {
+  transform: scale(0.8);
+  transition: transform 500ms ease-in-out;
+}
+
+.btn:disabled {
+  cursor: unset;
+  filter: brightness(70%);
+}
+
+::placeholder {
+  color: var(--blue);
+  font-family: Epilogue, sans-serif;
+  font-weight: 400;
+}
