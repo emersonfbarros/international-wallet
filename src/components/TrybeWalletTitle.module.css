@@ -1,16 +1,16 @@
-h1 {
+.h1 {
   color: #003be5;
-  font-size: 2.6rem;
+  font-size: min(2.2rem, 8vw);
   font-weight: 300;
   text-align: center;
 }
 
-h1 img {
+.img {
   vertical-align: bottom;
-  width: 3.5rem;
+  width: min(2.8rem, 10vw);
 }
 
-h1 span {
+.span {
   color: #2fc18c;
   font-weight: 800;
 }

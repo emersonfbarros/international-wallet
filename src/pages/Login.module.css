@@ -12,21 +12,21 @@ html {
   background-size: cover;
 }
 
-main {
+.main {
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
 }
 
-main form {
+.main .form {
   background-color: white;
   border-radius: 10px;
   box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
-  width: 42%;
+  width: min(525px, 92vw);
 }
 
-form h1 {
+.form h1 {
   padding: 3rem;
 }
 

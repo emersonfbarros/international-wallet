@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TrybeWalletTitle from '../components/TrybeWalletTitle';
-import styles from './Login.module.css';
-import { getEmailOnLogin } from '../redux/actions';
+import css from './Login.module.css';
+import { actionFetchCurrencies, getEmailOnLogin } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -11,6 +11,11 @@ class Login extends React.Component {
     password: '',
     enableBtn: true,
   };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(actionFetchCurrencies());
+  }
 
   validateBtn = () => {
     const { email, password } = this.state;
@@ -37,11 +42,11 @@ class Login extends React.Component {
   render() {
     const { enableBtn } = this.state;
     return (
-      <main>
-        <form onSubmit={ this.customSubmit }>
+      <main className={ css.main }>
+        <form onSubmit={ this.customSubmit } className={ css.form }>
           <TrybeWalletTitle />
           <input
-            className={ styles.email }
+            className={ css.email }
             type="text"
             name="email"
             onChange={ this.onInputChange }
@@ -49,7 +54,7 @@ class Login extends React.Component {
             placeholder="E-mail"
           />
           <input
-            className={ styles.passwd }
+            className={ css.passwd }
             type="password"
             name="password"
             onChange={ this.onInputChange }
@@ -58,7 +63,7 @@ class Login extends React.Component {
             placeholder="Senha"
           />
           <button
-            className={ styles.btn }
+            className={ css.btn }
             type="submit"
             disabled={ enableBtn }
           >
@@ -76,5 +81,9 @@ Login.propTypes = {
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
+
+// const mapDispatchToProps = (dispatch) => ({
+//   getCurrencies: () => dispatch(actionFetchCurrencies()),
+// });
 
 export default connect()(Login);
