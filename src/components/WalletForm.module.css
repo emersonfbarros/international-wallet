@@ -1,15 +1,12 @@
-:root {
+.form {
 
   --bg-color: rgba(225, 229, 235, 0.49);
 
   --blue: #003be5;
 
-  --gree: #2fc18c;
+  --green: #2fc18c;
 
   --red: #df3c6d;
-}
-
-.form {
   background-color: var(--bg-color);
   display: flex;
   flex-wrap: wrap;
@@ -38,7 +35,7 @@
 }
 
 .input:focus {
-  outline: 2px solid var(--gree);
+  outline: 2px solid var(--green);
 }
 
 .option {
@@ -75,6 +72,28 @@
   padding: 0.35rem;
 }
 
+.btn {
+  background-color: var(--green);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 1.2rem 30% 0;
+  padding-block: 0.6rem;
+  width: 28%;
+}
+
+.btn:active {
+  transform: scale(0.8);
+  transition: transform 500ms ease-in-out;
+}
+
+.btn:disabled {
+  cursor: unset;
+  filter: brightness(70%);
+}
+
 @media ( max-width : 600px ) , ( max-width : 851px ) {
 
   .form {
@@ -89,6 +108,11 @@
 
   .form > .label:nth-child( 1 ) {
     margin-top: 0.7rem;
+  }
+
+  .btn {
+    margin: 1.2rem 25% 0;
+    width: 50%;
   }
 }
 

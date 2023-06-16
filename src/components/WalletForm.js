@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { actionAddExpense } from '../redux/actions';
 import css from './WalletForm.module.css';
 
 class WalletForm extends Component {
   state = {
+    id: 0,
     description: '',
     tag: 'Alimentação',
     value: '',
@@ -13,15 +15,23 @@ class WalletForm extends Component {
   };
 
   componentDidMount() {
-    const { currencies, error } = this.props;
+    const { currencies, error, expenses } = this.props;
     if (!error) {
-      const [firstCurrency] = currencies;
-      this.setState({ currency: firstCurrency });
+      const [firstCurrency] = (currencies);
+      this.setState({ currency: firstCurrency, id: expenses.length });
     }
   }
 
   onIputChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
+  };
+
+  onAddBtnClick = () => {
+    const { dispatch, expenses } = this.props;
+    this.setState({ id: expenses.length }, () => {
+      dispatch(actionAddExpense(this.state));
+      this.setState({ description: '', value: '' });
+    });
   };
 
   render() {
@@ -71,6 +81,7 @@ class WalletForm extends Component {
             id="value"
             name="value"
             type="number"
+            min="0"
             onChange={ this.onIputChange }
             value={ value }
             className={ `${css.input} ${css.value}` }
@@ -130,6 +141,13 @@ class WalletForm extends Component {
               )
           }
         </label>
+        <button
+          type="button"
+          className={ css.btn }
+          onClick={ this.onAddBtnClick }
+        >
+          Adicionar despesa
+        </button>
       </form>
     );
   }
@@ -138,11 +156,14 @@ class WalletForm extends Component {
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   error: PropTypes.string.isRequired,
+  expenses: PropTypes.instanceOf(Array).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
   error: wallet.error,
+  expenses: wallet.expenses,
 });
 
 export default connect(mapStateToProps)(WalletForm);

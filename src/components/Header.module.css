@@ -1,11 +1,8 @@
-:root {
+.header {
 
   --green: #2fc18c;
 
   --blue: #003be5;
-}
-
-.header {
   align-items: center;
   background-color: white;
   display: flex;

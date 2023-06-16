@@ -8,14 +8,14 @@ import userLogo from '../assests/user-logo.svg';
 
 class Header extends Component {
   render() {
-    const { email } = this.props;
+    const { email, total } = this.props;
     return (
       <header className={ css.header }>
         <TrybeWalletTitle />
         <p className={ css.expanse }>
           <img src={ coins } alt="coins icons" className={ css.img } />
           Total de despesas:
-          <span className={ css.total } data-testid="total-field">0</span>
+          <span className={ css.total } data-testid="total-field">{ total }</span>
           <span
             className={ css.currency }
             data-testid="header-currency-field"
@@ -34,8 +34,12 @@ class Header extends Component {
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  total: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ user }) => ({ email: user.email });
+const mapStateToProps = ({ user, wallet }) => ({
+  email: user.email,
+  total: wallet.total,
+});
 
 export default connect(mapStateToProps)(Header);
