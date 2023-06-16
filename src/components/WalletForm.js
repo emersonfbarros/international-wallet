@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { actionAddExpense } from '../redux/actions';
+import { actionAddExpense, actionFetchCurrencies } from '../redux/actions';
 import css from './WalletForm.module.css';
 
 class WalletForm extends Component {
@@ -16,8 +16,13 @@ class WalletForm extends Component {
   };
 
   componentDidMount() {
-    const { currencies, error, expenses } = this.props;
-    if (!error) {
+    const { dispatch } = this.props;
+    dispatch(actionFetchCurrencies());
+  }
+
+  componentDidUpdate(prevProps) {
+    const { currencies, expenses } = this.props;
+    if (prevProps.currencies !== currencies) {
       const [firstCurrency] = (currencies);
       this.setState({ currency: firstCurrency, id: expenses.length });
     }
@@ -28,12 +33,14 @@ class WalletForm extends Component {
   };
 
   onAddBtnClick = () => {
-    const { dispatch, expenses } = this.props;
-    this.setState({ id: expenses.length }, () => {
-      dispatch(actionAddExpense(this.state));
-      this.setState({ description: '', value: '' });
-      this.validateAddBtn();
-    });
+    const { dispatch } = this.props;
+    const { id, description, tag, value, method, currency } = this.state;
+    dispatch(actionAddExpense({ id, description, tag, value, method, currency }));
+    this.setState((prev) => ({
+      description: '',
+      value: '',
+      id: prev.id + 1,
+    }), () => this.validateAddBtn());
   };
 
   validateAddBtn = () => {

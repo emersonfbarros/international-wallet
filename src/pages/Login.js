@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TrybeWalletTitle from '../components/TrybeWalletTitle';
 import css from './Login.module.css';
-import { actionFetchCurrencies, getEmailOnLogin } from '../redux/actions';
+import { getEmailOnLogin } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -11,11 +11,6 @@ class Login extends React.Component {
     password: '',
     enableBtn: true,
   };
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(actionFetchCurrencies());
-  }
 
   validateBtn = () => {
     const { email, password } = this.state;
@@ -81,9 +76,5 @@ Login.propTypes = {
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
-
-// const mapDispatchToProps = (dispatch) => ({
-//   getCurrencies: () => dispatch(actionFetchCurrencies()),
-// });
 
 export default connect()(Login);

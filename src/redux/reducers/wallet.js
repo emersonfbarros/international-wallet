@@ -6,7 +6,7 @@ import {
 } from '../actions';
 
 const INITIAL_STATE = {
-  currencies: null,
+  currencies: [],
   error: '',
   expenses: [],
   total: '0',
@@ -28,8 +28,8 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       total: state.expenses.reduce((total, { value, currency, exchangeRates }) => {
-        const multiplicator = exchangeRates[currency].ask;
-        return total + (value * multiplicator);
+        const exchange = exchangeRates[currency].ask;
+        return total + (value * exchange);
       }, 0).toFixed(2),
     };
   default: return state;
