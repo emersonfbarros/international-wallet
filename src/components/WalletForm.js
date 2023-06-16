@@ -12,6 +12,7 @@ class WalletForm extends Component {
     value: '',
     method: 'Dinheiro',
     currency: '',
+    addBtnDisabled: true,
   };
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class WalletForm extends Component {
   }
 
   onIputChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => this.validateAddBtn());
   };
 
   onAddBtnClick = () => {
@@ -31,7 +32,16 @@ class WalletForm extends Component {
     this.setState({ id: expenses.length }, () => {
       dispatch(actionAddExpense(this.state));
       this.setState({ description: '', value: '' });
+      this.validateAddBtn();
     });
+  };
+
+  validateAddBtn = () => {
+    const { description, value } = this.state;
+    const { error } = this.props;
+    const isValid = !description || !value;
+    this.setState({ addBtnDisabled: isValid });
+    if (error) this.setState({ addBtnDisabled: true });
   };
 
   render() {
@@ -42,6 +52,7 @@ class WalletForm extends Component {
       value,
       method,
       currency,
+      addBtnDisabled,
     } = this.state;
     return (
       <form className={ css.form }>
@@ -145,6 +156,7 @@ class WalletForm extends Component {
           type="button"
           className={ css.btn }
           onClick={ this.onAddBtnClick }
+          disabled={ addBtnDisabled }
         >
           Adicionar despesa
         </button>

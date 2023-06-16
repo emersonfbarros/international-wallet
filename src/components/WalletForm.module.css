@@ -7,6 +7,8 @@
   --green: #2fc18c;
 
   --red: #df3c6d;
+
+  --_br: 5px;
   background-color: var(--bg-color);
   display: flex;
   flex-wrap: wrap;
@@ -27,7 +29,7 @@
 .input {
   background-color: transparent;
   border: 1px solid var(--blue);
-  border-radius: 5px;
+  border-radius: var(--_br);
   color: var(--blue);
   font-weight: 400;
   margin-left: 0.6rem;
@@ -66,8 +68,7 @@
 
 .error {
   background-color: var(--red);
-  border-radius: 5px;
-  color: white;
+  border-radius: var(--_br);
   margin-left: 0.6rem;
   padding: 0.35rem;
 }
@@ -75,7 +76,7 @@
 .btn {
   background-color: var(--green);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--_br);
   color: white;
   cursor: pointer;
   font-weight: 700;
@@ -92,6 +93,7 @@
 .btn:disabled {
   cursor: unset;
   filter: brightness(70%);
+  transform: none;
 }
 
 @media ( max-width : 600px ) , ( max-width : 851px ) {

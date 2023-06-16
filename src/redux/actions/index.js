@@ -1,4 +1,4 @@
-import { fetchCurrencies } from '../../services/apiCalls';
+import { fetchCurrencies } from '../../services/apiCall';
 
 export const GET_EMAIL_ON_LOGIN = 'GET_EMAIL_ON_LOGIN';
 export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
