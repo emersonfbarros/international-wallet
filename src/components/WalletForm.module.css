@@ -9,13 +9,21 @@
   --red: #df3c6d;
 
   --_br: 5px;
+
+  --_brLg: 10px;
   background-color: var(--bg-color);
+  border-radius: 0 0 var(--_brLg) var(--_brLg);
+  margin: auto;
+  padding-top: 1.4rem;
+  width: min(1180px, 100vw);
+}
+
+.wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
-  padding: 0 5rem 1.2rem;
-  width: min(1180px, 100vw);
+  padding-inline: 5rem;
 }
 
 .label {
@@ -23,7 +31,7 @@
   color: var(--blue);
   display: flex;
   font-weight: 700;
-  margin-top: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .input {
@@ -73,6 +81,15 @@
   padding: 0.35rem;
 }
 
+.btnWrapper {
+  background-color: white;
+  border-radius: 0 0 var(--_brLg) var(--_brLg);
+  display: flex;
+  justify-content: center;
+  padding-block: 1.4rem;
+  width: 100%;
+}
+
 .btn {
   background-color: var(--green);
   border: none;
@@ -80,9 +97,7 @@
   color: white;
   cursor: pointer;
   font-weight: 700;
-  margin: 1.2rem 30% 0;
-  padding-block: 0.6rem;
-  width: 28%;
+  padding: 0.6rem 5rem;
 }
 
 .btn:active {
@@ -98,9 +113,9 @@
 
 @media ( max-width : 600px ) , ( max-width : 851px ) {
 
-  .form {
+  .wrapper {
     justify-content: flex-start;
-    padding: 0 0.4rem 0.7rem;
+    padding-inline: 0.4rem;
   }
 
   .label {
@@ -113,14 +128,13 @@
   }
 
   .btn {
-    margin: 1.2rem 25% 0;
-    width: 50%;
+    padding: 0.6rem 2.5rem;
   }
 }
 
-@media ( max-width : 1000px ) {
+@media ( max-width : 971px ) {
 
-  .form {
-    padding: 0 1.2rem 1.2rem;
+  .wrapper {
+    padding-inline: 1rem;
   }
 }

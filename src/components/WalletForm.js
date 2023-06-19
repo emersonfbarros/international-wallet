@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actionAddExpense, actionFetchCurrencies } from '../redux/actions';
@@ -63,110 +63,114 @@ class WalletForm extends Component {
     } = this.state;
     return (
       <form className={ css.form }>
-        <label htmlFor="description" className={ css.label }>
-          Descrição da despesa
-          <input
-            data-testid="description-input"
-            id="description"
-            name="description"
-            type="text"
-            onChange={ this.onIputChange }
-            value={ description }
-            className={ `${css.input} ${css.description}` }
-          />
-        </label>
-        <label htmlFor="tag" className={ css.label }>
-          Categoria da despesa
-          <select
-            data-testid="tag-input"
-            id="tag"
-            name="tag"
-            onChange={ this.onIputChange }
-            value={ tag }
-            className={ `${css.input} ${css.tag}` }
-          >
-            <option value="Alimentação" className={ css.option }>Alimentação</option>
-            <option value="Lazer" className={ css.option }>Lazer</option>
-            <option value="Trabalho" className={ css.option }>Trabalho</option>
-            <option value="Transporte" className={ css.option }>Transporte</option>
-            <option value="Saúde" className={ css.option }>Saúde</option>
-          </select>
-        </label>
-        <label htmlFor="value" className={ css.label }>
-          Valor
-          <input
-            data-testid="value-input"
-            id="value"
-            name="value"
-            type="number"
-            min="0"
-            onChange={ this.onIputChange }
-            value={ value }
-            className={ `${css.input} ${css.value}` }
-          />
-        </label>
-        <label htmlFor="method" className={ css.label }>
-          Método de pagamento
-          <select
-            data-testid="method-input"
-            id="method"
-            name="method"
-            onChange={ this.onIputChange }
-            value={ method }
-            className={ `${css.input} ${css.method}` }
-          >
-            <option className={ css.option } value="Dinheiro">Dinheiro</option>
-            <option
-              className={ css.option }
-              value="Cartão de crédito"
+        <div className={ css.wrapper }>
+          <label htmlFor="description" className={ css.label }>
+            Descrição da despesa
+            <input
+              data-testid="description-input"
+              id="description"
+              name="description"
+              type="text"
+              onChange={ this.onIputChange }
+              value={ description }
+              className={ `${css.input} ${css.description}` }
+            />
+          </label>
+          <label htmlFor="tag" className={ css.label }>
+            Categoria da despesa
+            <select
+              data-testid="tag-input"
+              id="tag"
+              name="tag"
+              onChange={ this.onIputChange }
+              value={ tag }
+              className={ `${css.input} ${css.tag}` }
             >
-              Cartão de crédito
-            </option>
-            <option
-              className={ css.option }
-              value="Cartão de débito"
+              <option value="Alimentação" className={ css.option }>Alimentação</option>
+              <option value="Lazer" className={ css.option }>Lazer</option>
+              <option value="Trabalho" className={ css.option }>Trabalho</option>
+              <option value="Transporte" className={ css.option }>Transporte</option>
+              <option value="Saúde" className={ css.option }>Saúde</option>
+            </select>
+          </label>
+          <label htmlFor="value" className={ css.label }>
+            Valor
+            <input
+              data-testid="value-input"
+              id="value"
+              name="value"
+              type="number"
+              min="0"
+              onChange={ this.onIputChange }
+              value={ value }
+              className={ `${css.input} ${css.value}` }
+            />
+          </label>
+          <label htmlFor="method" className={ css.label }>
+            Método de pagamento
+            <select
+              data-testid="method-input"
+              id="method"
+              name="method"
+              onChange={ this.onIputChange }
+              value={ method }
+              className={ `${css.input} ${css.method}` }
             >
-              Cartão de débito
-            </option>
-          </select>
-        </label>
-        <label htmlFor="currency" className={ css.label }>
-          Moeda
-          {
-            error
-              ? <span className={ css.error }>{ error }</span>
-              : (
-                <select
-                  data-testid="currency-input"
-                  id="currency"
-                  name="currency"
-                  onChange={ this.onIputChange }
-                  value={ currency }
-                  className={ `${css.input} ${css.currency}` }
-                >
-                  {
-                    currencies.map((currencyEl) => (
-                      <option
-                        key={ currencyEl }
-                        value={ currencyEl }
-                        className={ css.option }
-                      >
-                        { currencyEl }
-                      </option>
-                    ))
-                  }
-                </select>
-              )
-          }
-        </label>
-        <button
-          type="button"
-          className={ css.btn }
-          onClick={ this.onAddBtnClick }
-          disabled={ addBtnDisabled }
-        >
-          Adicionar despesa
-        </button>
+              <option className={ css.option } value="Dinheiro">Dinheiro</option>
+              <option
+                className={ css.option }
+                value="Cartão de crédito"
+              >
+                Cartão de crédito
+              </option>
+              <option
+                className={ css.option }
+                value="Cartão de débito"
+              >
+                Cartão de débito
+              </option>
+            </select>
+          </label>
+          <label htmlFor="currency" className={ css.label }>
+            Moeda
+            {
+              error
+                ? <span className={ css.error }>{ error }</span>
+                : (
+                  <select
+                    data-testid="currency-input"
+                    id="currency"
+                    name="currency"
+                    onChange={ this.onIputChange }
+                    value={ currency }
+                    className={ `${css.input} ${css.currency}` }
+                  >
+                    {
+                      currencies.map((currencyEl) => (
+                        <option
+                          key={ currencyEl }
+                          value={ currencyEl }
+                          className={ css.option }
+                        >
+                          { currencyEl }
+                        </option>
+                      ))
+                    }
+                  </select>
+                )
+            }
+          </label>
+        </div>
+        <div className={ css.btnWrapper }>
+          <button
+            type="button"
+            className={ css.btn }
+            onClick={ this.onAddBtnClick }
+            disabled={ addBtnDisabled }
+          >
+            Adicionar despesa
+          </button>
+        </div>
       </form>
     );
   }
