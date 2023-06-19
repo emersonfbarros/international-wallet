@@ -103,46 +103,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
     const { store } = renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     const addBtn = screen.getByText(/adicionar despesa/i);
-    // const [firstExpense, secondExpense, thirdExpense] = mockExpenses;
-
-    // act(() => {
-    //   userEvent.type(screen.getByLabelText(/descrição/i), firstExpense.description);
-    //   userEvent.selectOptions(screen.getByLabelText(/categoria da despesa/i), firstExpense.tag);
-    //   userEvent.type(screen.getByLabelText(/valor/i), firstExpense.value);
-    //   userEvent.selectOptions(screen.getByLabelText(/método de pagamento/i), firstExpense.method);
-    //   userEvent.selectOptions(screen.getByLabelText(/moeda/i), firstExpense.currency);
-    //   userEvent.click(addBtn);
-    // });
-    // await waitFor(() => {
-    //   const { wallet: { expenses } } = store.getState();
-    //   expect(expenses).toHaveLength(1);
-    // });
-
-    // act(() => {
-    //   userEvent.type(screen.getByLabelText(/descrição/i), secondExpense.description);
-    //   userEvent.selectOptions(screen.getByLabelText(/categoria da despesa/i), secondExpense.tag);
-    //   userEvent.type(screen.getByLabelText(/valor/i), secondExpense.value);
-    //   userEvent.selectOptions(screen.getByLabelText(/método de pagamento/i), secondExpense.method);
-    //   userEvent.selectOptions(screen.getByLabelText(/moeda/i), secondExpense.currency);
-    //   userEvent.click(addBtn);
-    // });
-    // await waitFor(() => {
-    //   const { wallet: { expenses } } = store.getState();
-    //   expect(expenses).toHaveLength(2);
-    // });
-
-    // act(() => {
-    //   userEvent.type(screen.getByLabelText(/descrição/i), thirdExpense.description);
-    //   userEvent.selectOptions(screen.getByLabelText(/categoria da despesa/i), thirdExpense.tag);
-    //   userEvent.type(screen.getByLabelText(/valor/i), thirdExpense.value);
-    //   userEvent.selectOptions(screen.getByLabelText(/método de pagamento/i), thirdExpense.method);
-    //   userEvent.selectOptions(screen.getByLabelText(/moeda/i), thirdExpense.currency);
-    //   userEvent.click(addBtn);
-    // });
-    // await waitFor(() => {
-    //   const { wallet: { expenses } } = store.getState();
-    //   expect(expenses).toHaveLength(3);
-    // });
 
     mockExpenses.forEach(({ description, tag, value, method, currency }) => {
       act(() => {
