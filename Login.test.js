@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
-import App from '../App';
-import mockFetch from './helpers/mockFetch.test';
-import { renderWithRouterAndRedux } from './helpers/renderWith';
+import App from './src/App';
+import mockFetch from './src/tests/helpers/mockFetch.test';
+import { renderWithRouterAndRedux } from './src/tests/helpers/renderWith';
 
 describe('Testa o componente Login', () => {
   it('É renderizado na rota "/"', () => {
