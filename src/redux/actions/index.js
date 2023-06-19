@@ -5,6 +5,7 @@ export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
 export const GET_CURRENCIES_FAIL = 'GET_CURRENCIES_FAIL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const CALC_TOTAL = 'CALC_TOTAL';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const getEmailOnLogin = (email) => ({ type: GET_EMAIL_ON_LOGIN, payload: email });
 
@@ -23,7 +24,7 @@ const addExpanse = (expanse) => ({
   payload: expanse,
 });
 
-const calcTotal = () => ({ type: CALC_TOTAL });
+export const calcTotal = () => ({ type: CALC_TOTAL });
 
 export const actionFetchCurrencies = () => async (dispatch) => {
   try {
@@ -43,3 +44,5 @@ export const actionAddExpense = (localState) => async (dispatch) => {
   dispatch(addExpanse({ ...localState, exchangeRates }));
   dispatch(calcTotal());
 };
+
+export const deleteExpense = (id) => ({ type: DELETE_EXPENSE, payload: id });

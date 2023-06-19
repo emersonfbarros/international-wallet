@@ -3,6 +3,7 @@ import {
   CALC_TOTAL,
   GET_CURRENCIES_FAIL,
   GET_CURRENCIES_SUCCESS,
+  DELETE_EXPENSE,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -31,6 +32,11 @@ const wallet = (state = INITIAL_STATE, action) => {
         const exchange = exchangeRates[currency].ask;
         return total + (value * exchange);
       }, 0).toFixed(2),
+    };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense.id !== action.payload),
     };
   default: return state;
   }
