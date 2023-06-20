@@ -4,18 +4,28 @@ import { act } from 'react-dom/test-utils';
 import App from '../App';
 import { renderWithRedux, renderWithRouterAndRedux } from './helpers/renderWith';
 import mockData from './helpers/mockData';
-import mockFetch from './helpers/mockFetch.test';
-import mockExpenses from './helpers/mockExpenses';
+import { mockExpenses } from './helpers/mockExpenses';
 import WalletForm from '../components/WalletForm';
 import Wallet from '../pages/Wallet';
 
+export function mockFetch(resOk = true, resStatus = 200) {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: jest.fn().mockResolvedValue(mockData),
+    ok: resOk,
+    status: resStatus,
+  });
+}
+
 describe('Testa todos os comportamentos do componente Wallet e seus filhos', () => {
+  beforeEach(() => { mockFetch(); });
+
+  afterEach(() => { global.fetch.mockClear(); });
+
   const [firstCurrency] = Object.keys(mockData);
   const testEmail = 'teste@email.com';
   const testPassword = 'myS3CRetW4IIet';
 
   it('Existe o texto "total de despesas", o texto "BRL", o valor "0" e o email do usuário no componente Header', async () => {
-    mockFetch();
     renderWithRouterAndRedux(<App />);
     act(() => {
       userEvent.type(screen.getByPlaceholderText(/e-mail/i), testEmail);
@@ -31,7 +41,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
 
   it('Existem todos os inputs necessários para o usuário adicionar uma despesa', async () => {
     const inputLabels = [/descrição/i, /categoria/i, /valor/i, /método/i, /moeda/i];
-    mockFetch();
     renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     inputLabels.forEach((label) => {
@@ -49,7 +58,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   });
 
   it('Ao ser renderizado é adicionado ao estado global um array com nome "currencies" com as siglas das moedas vindas da chamada da API excluindo "USDT"', async () => {
-    mockFetch();
     const { store } = renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     expect(global.fetch).toHaveBeenCalled();
@@ -61,7 +69,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   it('Os selects de categoria e método de pagamento do formulário têm as options necessárias para o usuário adicionar uma despesa', async () => {
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const methods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-    mockFetch();
     renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
 
@@ -75,7 +82,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   });
 
   it('Existem as options com todas as siglas das moedas trazidas pela API e guardadas no estado global', async () => {
-    mockFetch();
     const { store } = renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     const { wallet: { currencies } } = store.getState();
@@ -85,7 +91,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   });
 
   it('O botão "Adicionar despesa" só é ativado quando os inputs são todos preenchidos', async () => {
-    mockFetch();
     renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     const addBtn = screen.getByText(/adicionar despesa/i);
@@ -99,7 +104,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   });
 
   it('Adiconar despesas clicando no botão é criado um array de objetos no formato especificado no estado global', async () => {
-    mockFetch();
     const { store } = renderWithRedux(<WalletForm />);
     await screen.findByText(firstCurrency);
     const addBtn = screen.getByText(/adicionar despesa/i);
@@ -121,7 +125,6 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
   });
 
   it('Ao adicionar despesas é exibido no header a soma do total das despesas convertidas em BRL', async () => {
-    mockFetch();
     renderWithRedux(<Wallet />);
     await screen.findByText(firstCurrency);
     const addBtn = screen.getByText(/adicionar despesa/i);

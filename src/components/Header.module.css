@@ -9,7 +9,9 @@
   justify-content: space-evenly;
   margin: auto;
   padding-block: 3rem 2.5rem;
+  position: relative;
   width: min(1180px, 100vw);
+  z-index: 1;
 }
 
 .expanse , .email {

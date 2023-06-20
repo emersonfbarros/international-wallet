@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import mockFetch from './helpers/mockFetch.test';
+import { mockFetch } from './Wallet.test';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 describe('Testa o componente Login', () => {

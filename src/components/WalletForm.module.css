@@ -15,7 +15,9 @@
   border-radius: 0 0 var(--_brLg) var(--_brLg);
   margin: auto;
   padding-top: 1.4rem;
+  position: relative;
   width: min(1180px, 100vw);
+  z-index: 1;
 }
 
 .wrapper {
@@ -24,6 +26,24 @@
   justify-content: space-around;
   margin: auto;
   padding-inline: 5rem;
+}
+
+.editing {
+  border: 3px solid var(--green);
+  border-radius: var(--_brLg);
+  padding-top: 0;
+}
+
+.pWrapper {
+  width: 100%;
+}
+
+.p {
+  color: var(--green);
+  font-size: 1.16rem;
+  font-weight: 700;
+  padding-block: 0.7rem 0.7rem;
+  text-align: center;
 }
 
 .label {

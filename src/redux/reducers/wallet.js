@@ -4,6 +4,8 @@ import {
   GET_CURRENCIES_FAIL,
   GET_CURRENCIES_SUCCESS,
   DELETE_EXPENSE,
+  START_EDITING,
+  SAVE_EDIT,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -11,6 +13,8 @@ const INITIAL_STATE = {
   error: '',
   expenses: [],
   total: '0',
+  isEditing: false,
+  indexOfWhichEdit: 0,
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -38,6 +42,10 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.payload),
     };
+  case START_EDITING:
+    return { ...state, isEditing: true, indexOfWhichEdit: action.payload };
+  case SAVE_EDIT:
+    return { ...state, expenses: action.payload, isEditing: false };
   default: return state;
   }
 };

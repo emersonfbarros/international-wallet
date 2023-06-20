@@ -1,7 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { actionAddExpense, actionFetchCurrencies } from '../redux/actions';
+import {
+  actionAddExpense,
+  actionFetchCurrencies,
+  saveEdit,
+  calcTotal,
+} from '../redux/actions';
 import css from './WalletForm.module.css';
 
 class WalletForm extends Component {
@@ -21,10 +26,14 @@ class WalletForm extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currencies, expenses } = this.props;
+    const { currencies, expenses, isEditing, indexOfWhichEdit } = this.props;
+    const [firstCurrency] = currencies;
     if (prevProps.currencies !== currencies) {
-      const [firstCurrency] = (currencies);
       this.setState({ currency: firstCurrency, id: expenses.length });
+    }
+    if (prevProps.isEditing !== isEditing && isEditing) {
+      const { description, tag, value, method, currency } = expenses[indexOfWhichEdit];
+      this.setState({ description, tag, value, method, currency });
     }
   }
 
@@ -43,6 +52,30 @@ class WalletForm extends Component {
     }), () => this.validateAddBtn());
   };
 
+  onEditBtnClick = () => {
+    const { expenses, indexOfWhichEdit, dispatch, currencies } = this.props;
+    const [firstCurrency] = currencies;
+    const { description, tag, value, method, currency } = this.state;
+    const updatedExpenses = [...expenses];
+    updatedExpenses[indexOfWhichEdit] = {
+      ...expenses[indexOfWhichEdit],
+      description,
+      tag,
+      value,
+      method,
+      currency,
+    };
+    dispatch(saveEdit(updatedExpenses));
+    dispatch(calcTotal());
+    this.setState({
+      description: '',
+      tag: 'Alimentação',
+      value: '',
+      method: 'Dinheiro',
+      currency: firstCurrency,
+    });
+  };
+
   validateAddBtn = () => {
     const { description, value } = this.state;
     const { error } = this.props;
@@ -52,7 +85,7 @@ class WalletForm extends Component {
   };
 
   render() {
-    const { currencies, error } = this.props;
+    const { currencies, error, isEditing } = this.props;
     const {
       description,
       tag,
@@ -62,8 +95,13 @@ class WalletForm extends Component {
       addBtnDisabled,
     } = this.state;
     return (
-      <form className={ css.form }>
+      <form className={ `${css.form} ${isEditing ? css.editing : ''}` }>
         <div className={ css.wrapper }>
+          { isEditing
+            && (
+              <div className={ css.pWrapper }>
+                <p className={ css.p }>Edite a despesa abaixo</p>
+              </div>) }
           <label htmlFor="description" className={ css.label }>
             Descrição da despesa
             <input
@@ -162,14 +200,28 @@ class WalletForm extends Component {
           </label>
         </div>
         <div className={ css.btnWrapper }>
-          <button
-            type="button"
-            className={ css.btn }
-            onClick={ this.onAddBtnClick }
-            disabled={ addBtnDisabled }
-          >
-            Adicionar despesa
-          </button>
+          {
+            isEditing
+              ? (
+                <button
+                  type="button"
+                  className={ css.btn }
+                  onClick={ this.onEditBtnClick }
+                >
+                  Editar despesa
+                </button>
+              )
+              : (
+                <button
+                  type="button"
+                  className={ css.btn }
+                  onClick={ this.onAddBtnClick }
+                  disabled={ addBtnDisabled }
+                >
+                  Adicionar despesa
+                </button>
+              )
+          }
         </div>
       </form>
     );
@@ -181,12 +233,16 @@ WalletForm.propTypes = {
   error: PropTypes.string.isRequired,
   expenses: PropTypes.instanceOf(Array).isRequired,
   dispatch: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  indexOfWhichEdit: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
   error: wallet.error,
   expenses: wallet.expenses,
+  isEditing: wallet.isEditing,
+  indexOfWhichEdit: wallet.indexOfWhichEdit,
 });
 
 export default connect(mapStateToProps)(WalletForm);

@@ -6,6 +6,8 @@ export const GET_CURRENCIES_FAIL = 'GET_CURRENCIES_FAIL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const CALC_TOTAL = 'CALC_TOTAL';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const START_EDITING = 'START_EDITING';
+export const SAVE_EDIT = 'SAVE_EDIT';
 
 export const getEmailOnLogin = (email) => ({ type: GET_EMAIL_ON_LOGIN, payload: email });
 
@@ -46,3 +48,10 @@ export const actionAddExpense = (localState) => async (dispatch) => {
 };
 
 export const deleteExpense = (id) => ({ type: DELETE_EXPENSE, payload: id });
+
+export const startEdintig = (index) => ({ type: START_EDITING, payload: index });
+
+export const saveEdit = (updatedExpenses) => ({
+  type: SAVE_EDIT,
+  payload: updatedExpenses,
+});

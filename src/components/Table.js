@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { deleteExpense, calcTotal } from '../redux/actions';
+import { deleteExpense, calcTotal, startEdintig } from '../redux/actions';
+import css from './Table.module.css';
 
 class Table extends Component {
   onDeleteBtnClick = (id) => {
@@ -12,9 +13,9 @@ class Table extends Component {
   };
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     return (
-      <div className="table-wrapper">
+      <div className={ css.wrapper }>
         <table>
           <thead>
             <tr>
@@ -40,7 +41,7 @@ class Table extends Component {
                   value,
                   currency,
                   exchangeRates,
-                }) => (
+                }, index) => (
                   <tr key={ value }>
                     <td>{ description }</td>
                     <td>{ tag }</td>
@@ -51,7 +52,14 @@ class Table extends Component {
                     <td>{ (value * exchangeRates[currency].ask).toFixed(2) }</td>
                     <td>Real</td>
                     <td>
-                      <button type="button" aria-label="Editar"><FaEdit /></button>
+                      <button
+                        type="button"
+                        aria-label="Editar"
+                        data-testid="edit-btn"
+                        onClick={ () => dispatch(startEdintig(index)) }
+                      >
+                        <FaEdit />
+                      </button>
                       <button
                         type="button"
                         aria-label="Excluir"
