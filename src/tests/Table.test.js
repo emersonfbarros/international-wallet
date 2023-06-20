@@ -5,8 +5,15 @@ import Table from '../components/Table';
 import Wallet from '../pages/Wallet';
 import { mockExpenses, mockExpensesUpdated } from './helpers/mockExpenses';
 import { renderWithRedux } from './helpers/renderWith';
-import { mockFetch } from './Wallet.test';
 import mockData from './helpers/mockData';
+
+function mockFetch(resOk = true, resStatus = 200) {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: jest.fn().mockResolvedValue(mockData),
+    ok: resOk,
+    status: resStatus,
+  });
+}
 
 const originalExpensesTotal = mockExpenses
   .reduce((total, { value, currency, exchangeRates }) => {

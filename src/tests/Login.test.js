@@ -2,8 +2,16 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import { mockFetch } from './Wallet.test';
+import mockData from './helpers/mockData';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
+
+function mockFetch(resOk = true, resStatus = 200) {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: jest.fn().mockResolvedValue(mockData),
+    ok: resOk,
+    status: resStatus,
+  });
+}
 
 describe('Testa o componente Login', () => {
   const correctEmail = 'teste@email.com';

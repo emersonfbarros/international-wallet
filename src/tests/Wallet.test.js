@@ -8,7 +8,7 @@ import { mockExpenses } from './helpers/mockExpenses';
 import WalletForm from '../components/WalletForm';
 import Wallet from '../pages/Wallet';
 
-export function mockFetch(resOk = true, resStatus = 200) {
+function mockFetch(resOk = true, resStatus = 200) {
   jest.spyOn(global, 'fetch').mockResolvedValue({
     json: jest.fn().mockResolvedValue(mockData),
     ok: resOk,
