@@ -1,0 +1,12 @@
+.main {
+
+  --blue: #003be5;
+  background-color: var(--blue);
+  border-radius: 10px;
+  box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
+  margin: auto;
+  min-height: 400px;
+  position: relative;
+  width: min(1330px, 100vw);
+  z-index: 1;
+}

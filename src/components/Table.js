@@ -16,18 +16,18 @@ class Table extends Component {
     const { expenses, dispatch } = this.props;
     return (
       <div className={ css.wrapper }>
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
-              <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
+        <table className={ css.table } role="table">
+          <thead className={ css.thead }>
+            <tr className={ css.tr } role="row">
+              <th className={ css.th } role="columnheader">Descrição</th>
+              <th className={ css.th } role="columnheader">Tag</th>
+              <th className={ css.th } role="columnheader">Método de pagamento</th>
+              <th className={ css.th } role="columnheader">Valor</th>
+              <th className={ css.th } role="columnheader">Moeda</th>
+              <th className={ css.th } role="columnheader">Câmbio utilizado</th>
+              <th className={ css.th } role="columnheader">Valor convertido</th>
+              <th className={ css.th } role="columnheader">Moeda de conversão</th>
+              <th className={ css.th } role="columnheader">Editar/Excluir</th>
             </tr>
           </thead>
           <tbody>
@@ -42,17 +42,70 @@ class Table extends Component {
                   currency,
                   exchangeRates,
                 }, index) => (
-                  <tr key={ value }>
-                    <td>{ description }</td>
-                    <td>{ tag }</td>
-                    <td>{ method }</td>
-                    <td>{ Number(value).toFixed(2) }</td>
-                    <td>{ exchangeRates[currency].name }</td>
-                    <td>{ Number(exchangeRates[currency].ask).toFixed(2) }</td>
-                    <td>{ (value * exchangeRates[currency].ask).toFixed(2) }</td>
-                    <td>Real</td>
-                    <td>
+                  <tr key={ value } className={ css.tr }>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="descrição"
+                    >
+                      { description }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="tag"
+                    >
+                      { tag }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="método de pagamento"
+                    >
+                      { method }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="valor"
+                    >
+                      { Number(value).toFixed(2) }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="moeda"
+                    >
+                      { exchangeRates[currency].name }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="câmbio utilizado"
+                    >
+                      { Number(exchangeRates[currency].ask).toFixed(2) }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="valor convertido"
+                    >
+                      { (value * exchangeRates[currency].ask).toFixed(2) }
+                    </td>
+                    <td
+                      role="cell"
+                      className={ css.td }
+                      data-cell="moeda de conversão"
+                    >
+                      Real
+                    </td>
+                    <td
+                      className={ `${css.td} ${css.buttons}` }
+                      role="cell"
+                      data-cell="editar/excluir"
+                    >
                       <button
+                        className={ css.edit }
                         type="button"
                         aria-label="Editar"
                         data-testid="edit-btn"
@@ -61,6 +114,7 @@ class Table extends Component {
                         <FaEdit />
                       </button>
                       <button
+                        className={ css.delete }
                         type="button"
                         aria-label="Excluir"
                         data-testid="delete-btn"

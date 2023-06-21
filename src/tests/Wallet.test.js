@@ -54,7 +54,7 @@ describe('Testa todos os comportamentos do componente Wallet e seus filhos', () 
     mockFetch(false, errorCode);
     renderWithRedux(<WalletForm />);
     expect(await screen.findByText(`Serviço indisponível: ${errorCode}`)).toBeVisible();
-    expect(screen.getByText(/adicionar despesa/i)).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Adicionar despesa' })).toBeDisabled();
   });
 
   it('Ao ser renderizado é adicionado ao estado global um array com nome "currencies" com as siglas das moedas vindas da chamada da API excluindo "USDT"', async () => {

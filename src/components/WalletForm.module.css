@@ -1,6 +1,6 @@
 .form {
 
-  --bg-color: rgba(225, 229, 235, 0.49);
+  --bg-color: #f0f2f5;
 
   --blue: #003be5;
 
@@ -11,6 +11,8 @@
   --_br: 5px;
 
   --_brLg: 10px;
+
+  --shadowValues: -4px 9px 13px rgba(5, 18, 54, 0.4);
   background-color: var(--bg-color);
   border-radius: 0 0 var(--_brLg) var(--_brLg);
   margin: auto;
@@ -104,6 +106,7 @@
 .btnWrapper {
   background-color: white;
   border-radius: 0 0 var(--_brLg) var(--_brLg);
+  box-shadow: var(--shadowValues);
   display: flex;
   justify-content: center;
   padding-block: 1.4rem;

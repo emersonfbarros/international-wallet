@@ -1,4 +1,83 @@
 .wrapper {
+
+  --green: #2fc18c;
+  margin: 2.5rem auto 0;
+  padding-bottom: 1.6rem;
   position: relative;
+  width: min(1180px, 100% - 0.4rem);
   z-index: 1;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.td , .th {
+  color: var(--green);
+  font-size: 1rem;
+  padding: 0.9rem 0.3rem;
+  text-align: center;
+}
+
+.th {
+  background: hsl(0 0% 0% / 0.3);
+  color: white;
+}
+
+.tr:nth-of-type( 2n ) {
+  background: hsl(0 0% 0% / 0.1);
+}
+
+.edit , .delete {
+  background-color: transparent;
+  border: none;
+  color: var(--green);
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.delete {
+  color: #df3c6d;
+}
+
+.edit:active , .delete:active {
+  transform: scale(0.8);
+  transition: transform 500ms ease-in-out;
+}
+
+@media ( max-width : 650px ) {
+
+  .th , .td {
+    text-align: unset;
+  }
+
+  .th {
+    display: none;
+  }
+
+  .td {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 15ch auto;
+  }
+
+  .td:before {
+    content: attr(data-cell) ': ';
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .edit , .delete {
+    margin-left: 1ch;
+  }
+
+  .edit {
+    margin-left: 2.5ch;
+  }
 }
