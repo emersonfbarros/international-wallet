@@ -22,9 +22,8 @@ const wallet = (state = INITIAL_STATE, action) => {
   case GET_CURRENCIES_SUCCESS:
     return {
       ...state,
-      currencies: action.payload
-        .filter(([code]) => code !== 'USDT')
-        .map(([currency]) => currency) };
+      currencies: Object.keys(action.payload).filter((code) => code !== 'USDT'),
+    };
   case GET_CURRENCIES_FAIL:
     return { ...state, error: action.payload };
   case ADD_EXPENSE:

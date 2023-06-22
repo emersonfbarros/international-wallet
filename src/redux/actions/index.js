@@ -38,11 +38,7 @@ export const actionFetchCurrencies = () => async (dispatch) => {
 };
 
 export const actionAddExpense = (localState) => async (dispatch) => {
-  const currencies = await fetchCurrencies();
-  const exchangeRates = {};
-  currencies.forEach(([code, infos]) => {
-    exchangeRates[code] = infos;
-  });
+  const exchangeRates = await fetchCurrencies();
   dispatch(addExpanse({ ...localState, exchangeRates }));
   dispatch(calcTotal());
 };

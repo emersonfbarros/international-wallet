@@ -63,6 +63,7 @@
   }
 
   .td:before {
+    color: white;
     content: attr(data-cell) ': ';
     font-weight: 700;
     text-transform: capitalize;
