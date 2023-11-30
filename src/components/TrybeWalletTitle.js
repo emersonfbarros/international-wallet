@@ -8,7 +8,7 @@ export default class TrybeWalletTitle extends Component {
       <h1 className={ css.h1 }>
         <img src={ logo } alt="logo" className={ css.img } />
         { ' ' }
-        Trybe
+        International
         { ' ' }
         <span className={ css.span }>Wallet</span>
       </h1>
