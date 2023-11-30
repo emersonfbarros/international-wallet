@@ -25,11 +25,11 @@ describe('Testa o componente Login', () => {
     expect(pathname).toBe('/');
   });
 
-  it('Existe um header com o texto" trybe wallet"', () => {
+  it('Existe um header com o texto "international wallet"', () => {
     renderWithRouterAndRedux(<App />);
 
     expect(screen.getByRole('heading', { level: 1 })).toBeVisible();
-    expect(screen.getByText(/trybe/i)).toBeVisible();
+    expect(screen.getByText(/international/i)).toBeVisible();
     expect(screen.getByText(/wallet/i)).toBeVisible();
   });
 
