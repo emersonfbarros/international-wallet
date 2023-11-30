@@ -1,13 +1,35 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# International Wallet
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+International expense control app created with React, Redux for global state management, and css modules for styling.
+Makes use of this [API](https://docs.awesomeapi.com.br/api-de-moedas) to get the currency exchange rate in real time when the expense is added.
+## Getting Started
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+First install the dependencies:
+
+``` shell
+npm install
+```
+Then start the application:
+
+```shell
+npm start
+```
+
+Or access directly via this [link]() via computer or smartphone, the application is responsive.
+
+To login and test, use any valid email, such as "test@email.com", and any password longer than 6 characters, otherwise the login button will not be activated.
+
+## Tests
+
+To run all test cases and see their coverage:
+
+```shell
+npm run test-coverage
+```
+
+
+## Contact me: 
+
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/emersonfbarros/)
+
+<p align="center">Copyright © 2023 Emerson Barros</p>
